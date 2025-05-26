@@ -267,16 +267,11 @@ const mediaList = [
 ];
 
     function getRandomMediaTag() {
-  const media = mediaList[Math.floor(Math.random() * mediaList.length)];
-
-  if (media.match(/\.(mp4)(\?|$)/)) {
-    return `<video class="question-media" autoplay muted loop playsinline>
-              <source src="${media}" type="video/mp4">
-            </video>`;
-  } else {
-    return `<img class="question-media" src="${media}" alt="매튜 이미지">`;
-  }
-}
+      const media = mediaList[Math.floor(Math.random() * mediaList.length)];
+      return media.endsWith(".mp4")
+        ? `<video class="question-media" autoplay muted loop playsinline><source src="${media}" type="video/mp4"></video>`
+        : `<img class="question-media" src="${media}" alt="매튜 이미지">`;
+    }
 
     let currentQuestion = 0;
 
