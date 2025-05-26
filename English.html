@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Only 528cm Between Me and Matthew 💖</title>
+  <title>매튜와 나의 거리? 528cm!</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
@@ -177,10 +179,10 @@
 <body>
   <div class="quiz-box">
     <div id="introContainer">
-      <img src="https://raw.githubusercontent.com/Meadowlight/fanquiz/main/matthew-thumbnail.jpg" alt="매튜 이미지" class="matthew-pic">
-      <h2>💖 How well do I know Matthew?</h2>
-      <p>Let the fan quiz begin!</p>
-      <button class="start-btn" onclick="startQuiz()">🎯 Let’s Go!</button>
+      <img src="https://github.com/hajin9515/shiningmeadow/blob/main/images/matthew-thumbnail.jpg?raw=true" alt="매튜 이미지" class="matthew-pic">
+      <h2>💖 매튜에 대해 얼마나 알고 있을까?</h2>
+      <p>지금부터 팬심 테스트를 시작해볼까?</p>
+      <button class="start-btn" onclick="startQuiz()">🎯 퀴즈 시작하기</button>
       <button id="musicToggleBtn" class="music-toggle" onclick="toggleMusic()">🔇</button>
     </div>
 
@@ -192,72 +194,73 @@
   <button id="musicControlInQuiz" onclick="toggleMusic()">🔊</button>
 </div>
       <div style="margin-top: 20px;">
-        <button id="prevBtn" onclick="goToPrevious()">⬅ Back</button>
-        <button id="nextBtn" onclick="goToNext()">Next ➡</button>
-        <button id="submitBtn" class="hidden" onclick="showResult()">📊 My Score</button>
+        <button id="prevBtn" onclick="goToPrevious()">⬅ 이전</button>
+        <button id="nextBtn" onclick="goToNext()">다음 ➡</button>
+        <button id="submitBtn" class="hidden" onclick="showResult()">📊 결과보기</button>
       </div>
     </div>
 
     <div id="resultContainer" class="hidden">
   <!-- 🎀 핑크 박스 안: 리본 + 결과 내용만 -->
   <div class="result-box-cute">
-    <div class="result-ribbon">Only 528cm Between Me and Matthew 💖</div>
+    <div class="result-ribbon">💖 매튜와 나의 거리? 528cm!</div>
     <div class="result-content">
       <p class="fan-rank" id="rank"></p>
       <p class="score" id="scoreText"></p>
       <p class="message" id="message"></p>
       <p class="encouragement" id="encouragement"></p>
       <a href="https://namu.wiki/w/%EC%84%9D%EB%A7%A4%ED%8A%9C" target="_blank" class="wiki-link-cute">
-        💗 Ways to Be Closer to Matthew
+        💗 매튜와 더 가까워지는 방법
       </a>
     </div>
   </div>
 
   <!-- ✅ 박스 밖: 다시풀기 / 공유 버튼 -->
   <div class="result-buttons">
-    <button onclick="startQuiz()">🔁 Try Again</button>
-    <button onclick="shareResult()">📤 Show Off My Score</button>
+    <button onclick="startQuiz()">🔁 다시 풀기</button>
+    <button onclick="shareResult()">📤 결과 공유하기</button>
   </div>
 
   <!-- ✅ 그 아래: 이미지 저장 버튼 -->
-  <button class="download-btn" onclick="downloadResultCard()">📸 Save Image</button>
+  <button class="download-btn" onclick="downloadResultCard()">📸 이미지 저장하기</button>
 
   </div>
 
-<audio id="bgMusic" loop>
-  <source src="https://raw.githubusercontent.com/Meadowlight/fanquiz/main/bg.mp3" type="audio/mpeg">
+ <audio id="bgMusic" loop>
+  <source src="https://github.com/hajin9515/shiningmeadow/blob/main/images/bg.mp3?raw=true" type="audio/mpeg">
+  브라우저가 오디오를 지원하지 않아요.
 </audio>
 
   <script>
 
 const quizData = [
-  { question: "Where was Matthew born?", options: ["Vancouver, Canada", "Toronto, Canada", "Surrey, Canada", "Seattle, USA"], answer: 2 },
-  { question: "Which high school did Matthew graduate from?", options: ["White Rock High", "Earl Marriott Secondary School", "Vancouver Arts School", "Maple Leaf Academy"], answer: 1 },
-  { question: "What major did Matthew drop out of in university?", options: ["Biology", "Health Science", "Psychology", "Physical Education"], answer: 1 },
-  { question: "At what age did Matthew start dancing?", options: ["15", "16", "17", "14"], answer: 1 },
-  { question: "What was Matthew's response when he first received a trainee offer?", options: ["Accepted immediately and moved to Korea", "Ignored it", "Rejected at first but contacted later", "Started training in Canada"], answer: 2 },
-  { question: "What rank did Matthew get in the G Group Visual vote during Boys Planet?", options: ["1st", "2nd", "3rd", "4th"], answer: 1 },
-  { question: "What is Matthew’s MBTI type?", options: ["ENFP", "INFP", "ENFJ", "ISTJ"], answer: 2 },
-  { question: "Which of the following did Matthew NOT narrate in English?", options: ["2023 KCON LA", "'__ BAD' Film Teaser", "2024 Hanteo Chart", "Music Bank MC"], answer: 3 },
-  { question: "What charm point does Matthew often mention?", options: ["Jawline", "Abs", "Smiling Eyes", "Nose Bridge"], answer: 2 },
-  { question: "The moles next to Matthew's eyes are known as 'symmetry moles' among fans.", options: ["O", "X"], answer: 0 },
-  { question: "Matthew doesn't have moles around his mouth, so the nickname 'mustache moles' is incorrect.", options: ["O", "X"], answer: 1 },
-  { question: "Which body part is Matthew most confident about?", options: ["Abs", "Arm Muscles", "Thighs", "Jawline"], answer: 1 },
-  { question: "In which performance did Matthew reveal his abs on stage?", options: ["Say My Name", "Back to ZEROBASE", "Love Killa", "In Bloom"], answer: 2 },
-  { question: "Which content did Matthew narrate?", options: ["'__ BAD' Film Teaser", "Back Pack", "Back to ZEROBASE", "MAMA VCR"], answer: 0 },
-  { question: "Where did Matthew hold hands with fans in real life?", options: ["Myeongdong", "Hongdae", "Gangnam", "Itaewon"], answer: 1 },
-  { question: "What is Matthew’s favorite time of day?", options: ["7AM", "12PM", "4PM", "10PM"], answer: 1 },
-  { question: "What is Matthew’s favorite season?", options: ["Summer", "Winter", "Autumn", "Spring"], answer: 3 },
-  { question: "Which animation inspired Matthew's custom in-ear monitor design?", options: ["Spirited Away", "Your Name", "Howl’s Moving Castle", "Kiki’s Delivery Service"], answer: 2 },
-  { question: "What genre does Matthew say he sings often?", options: ["Hip-hop", "R&B", "Rock", "EDM"], answer: 1 },
-  { question: "Which song did Matthew say he wants to listen to while eating chicken?", options: ["Merry-Go-Round of Life", "Paradise", "Those Days", "I Will Go to You Like the First Snow"], answer: 1 }
+  { question: "석매튜는 어디에서 태어났나요?", options: ["캐나다 밴쿠버", "캐나다 토론토", "캐나다 써리", "미국 시애틀"], answer: 2, explanation: "석매튜는 캐나다 브리티시컬럼비아주 써리 출신이에요!" },
+  { question: "석매튜가 졸업한 고등학교는?", options: ["White Rock High", "Earl Marriott Secondary School", "Vancouver Arts School", "Maple Leaf Academy"], answer: 1, explanation: "그가 졸업한 고등학교는 South Surrey에 있는 Earl Marriott입니다." },
+  { question: "석매튜는 대학에서 어떤 전공을 하다 중퇴했나요?", options: ["생물학", "Health Science", "심리학", "체육학"], answer: 1, explanation: "웨스턴 대학교에서 Health Science를 전공했었어요." },
+  { question: "석매튜가 춤을 처음 시작한 나이는?", options: ["15살", "16살", "17살", "14살"], answer: 1, explanation: "16살 때 KTL Dance에서 댄서 활동을 시작했어요." },
+  { question: "석매튜가 연습생 제안을 처음 받았을 당시 어떤 선택을 했나요?", options: ["바로 수락하고 한국으로 왔다", "무시했다", "거절했다가 다시 연락했다", "캐나다에서 훈련을 시작했다"], answer: 2, explanation: "처음엔 거절했지만 나중에 관심이 생겨 다시 연락했다고 해요." },
+  { question: "보이즈플래닛 당시 석매튜는 G그룹 비주얼 투표에서 몇 위였나요?", options: ["1위", "2위", "3위", "4위"], answer: 1, explanation: "G그룹 비주얼 투표에서 2위를 차지했어요!" },
+  { question: "석매튜의 MBTI 성격 유형은?", options: ["ENFP", "INFP", "ENFJ", "ISTJ"], answer: 2, explanation: "그의 MBTI는 ENFJ로 알려져 있어요." },
+  { question: "석매튜가 영어 내레이션을 맡은 콘텐츠로 옳지 않은 것은?", options: ["2023 KCON LA", "‘__ BAD’ Film 티저", "2024 한터차트", "뮤직뱅크 MC 멘트"], answer: 3, explanation: "뮤직뱅크 MC는 맡지 않았어요." },
+  { question: "석매튜가 자주 언급한 자신의 매력 포인트는?", options: ["턱선", "복근", "눈웃음", "콧대"], answer: 2, explanation: "눈웃음이 매튜의 시그니처예요!" },
+  { question: "OX: 석매튜의 눈 양옆에 있는 점은 팬들 사이에서 '대칭점'이라 불린다.", options: ["O", "X"], answer: 0, explanation: "맞아요! 팬들 사이에서는 '대칭점'이라 부릅니다." },
+  { question: "OX: 석매튜는 입가에 점이 없어 ‘수염점’이란 별명은 존재하지 않는다.", options: ["O", "X"], answer: 1, explanation: "입가에 두 개의 점이 있어 '수염점'이라 불려요!" },
+  { question: "석매튜가 가장 자신 있어 하는 신체 부위는?", options: ["복근", "팔근육", "허벅지", "턱선"], answer: 1, explanation: "팔근육을 자신 있는 부위로 꼽았어요." },
+  { question: "석매튜가 무대에서 복근을 공개한 곡은?", options: ["Say My Name", "Back to ZEROBASE", "Love Killa", "In Bloom"], answer: 2, explanation: "보이즈플래닛 2차 경연곡 'Love Killa'에서 복근이 공개됐어요." },
+  { question: "석매튜가 내레이션 작업에 참여한 콘텐츠는?", options: ["‘__ BAD’ Film 티저", "Back Pack", "Back to ZEROBASE", "MAMA VCR"], answer: 0, explanation: "‘__ BAD’ 티저 내레이션을 직접 썼어요!" },
+  { question: "석매튜가 실제로 팬들 손을 잡아준 장소는?", options: ["명동", "홍대", "강남", "이태원"], answer: 1, explanation: "홍대에서 팬들에게 손 인사를 해줬어요!" },
+  { question: "석매튜가 가장 좋아하는 시간대는?", options: ["아침 7시", "오후 12시", "오후 4시", "밤 10시"], answer: 1, explanation: "가장 좋아하는 시간은 점심 12시예요!" },
+  { question: "석매튜가 좋아하는 계절은?", options: ["여름", "겨울", "가을", "봄"], answer: 3, explanation: "한국에 와서부터 봄을 좋아하게 됐다고 해요." },
+  { question: "석매튜의 커스텀 인이어 디자인에 들어간 애니메이션은?", options: ["센과 치히로", "너의 이름은", "하울의 움직이는 성", "마녀 배달부 키키"], answer: 2, explanation: "그의 인이어에는 '하울의 움직이는 성' 테마가 있어요!" },
+  { question: "석매튜가 자주 부른다고 밝힌 노래 장르는?", options: ["힙합", "R&B", "록", "EDM"], answer: 1, explanation: "그는 R&B 장르를 즐겨 들어요." },
+  { question: "석매튜가 치킨을 먹을 때 듣고 싶은 음악으로 언급한 곡은?", options: ["인생의 회전목마", "파라다이스", "그날들", "첫눈처럼 너에게 가겠다"], answer: 1, explanation: "드라마 ‘꽃보다 남자’의 OST, '파라다이스'를 꼽았어요!" }
 ];
 
     const mediaList = [
       "https://mblogthumb-phinf.pstatic.net/MjAyNTA1MjZfMTE5/MDAxNzQ4MjUyOTU1MTgz.FTp3Zsj_VEmVySnP66GiGqM8yTQSEHinmkM_jDxiS9sg.nY8CWm39u3nqvwS__erNNUoBQiq8_lfHzCrfZfa06WIg.GIF/IMG%25EF%25BC%25BF1183.GIF?type=w966",
       "https://mblogthumb-phinf.pstatic.net/MjAyNTA1MjZfNyAg/MDAxNzQ4MjUyOTQ5OTk0.Lxh_fayDEJ1JKyAJu5k8hfpNxVd-EFS7wCKT75icxIAg.v21thynQCpyM_F-vVlZ9mJjNf-CuYJdgV1l_FOHAK1Qg.JPEG/IMG%EF%BC%BF1182.JPG?type=w800",
       "https://mblogthumb-phinf.pstatic.net/MjAyNTA1MjZfNiAg/MDAxNzQ4MjUyOTYzMDA2.Yn_fUc0tT_sV3l5q6Ak3FQWEq8DKeM8LQ66d7mmaGaMg.a_yrs6ADsoZ4YIjeJxw_9sqxpv8xRmLVWPd6_YeHsPAg.GIF/IMG%25EF%25BC%25BF1181.GIF?type=w966",
-      "https://i.namu.wiki/i/VVmLKyji8jP4QJUkgobd594D39wPXDq5Ti3mlLXTK1frmyBeLNHc3E5op72SbiA94Y3pGE0tEPYHDMVuRKvQ-Q.mp4"
+      "https://mblogthumb-phinf.pstatic.net/MjAyNTA1MjZfMTc4/MDAxNzQ4MjUzMzMwMjYz.QfWB2YgE1LytL5HRzNhSsc7IoVFqqjK0reyU2S0XTRsg.rbznSugeBeL5kgVEJp2TL29TnBFLVO5L3G5NGa7gf9Ig.GIF/IMG%25EF%25BC%25BF1184.GIF?type=w966"
     ];
 
 
@@ -328,25 +331,25 @@ function startQuiz() {
       document.getElementById("quizContainer").classList.add("hidden");
       document.getElementById("resultContainer").classList.remove("hidden");
       document.getElementById("rank").innerText = `🏅 ${rank}`;
-      document.getElementById("scoreText").innerText = `📊 Score: ${score}/${quizData.length}`;
-      document.getElementById("message").innerText = `💖 Matthew says: 'You did amazing!'`;
+      document.getElementById("scoreText").innerText = `📊 점수: ${score}/${quizData.length}`;
+      document.getElementById("message").innerText = `💖 매튜가 말해요: '고생했어!'`;
       document.getElementById("encouragement").innerText = `💡 ${message}`;
     }
 
     function getFanRank(score, total) {
       const ratio = score / total;
-      if (ratio >= 0.9) return "Level 528";
-      if (ratio >= 0.5) return "Level 28";
-      if (ratio >= 0.4) return "Level 5";
-      return "Level 2";
+      if (ratio >= 0.9) return "석류 528등급";
+      if (ratio >= 0.5) return "석류 28등급";
+      if (ratio >= 0.4) return "석류 5등급";
+      return "석류 2등급";
     }
 
     function getRankMessage(rank) {
       switch (rank) {
-        case "Level 528": return "You're a perfect fan! Matthew might just remember you 💖";
-        case "Level 28": return "You're pretty close! Your love for Matthew shines through 👏";
-        case "Level 5": return "A budding fan! Just a bit more to become perfect 🌱";
-        case "Level 2": return "It's a start filled with excitement! Let's learn more about Matthew 💡";
+        case "석류 528등급": return "완벽한 석류! 매튜가 기억할지도 몰라요 💖";
+        case "석류 28등급": return "꽤 가까워요! 매튜에 대한 애정이 느껴져요! 👏";
+        case "석류 5등급": return "이제 막 싹트는 석류! 조금만 더 알면 완벽해요! 🌱";
+        case "석류 2등급": return "아쉽지만 시작은 설렘이지! 매튜를 더 알아봐요! 💡";
         default: return "";
       }
     }
