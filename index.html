@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Only 528cm Between Me and Matthew 💖</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Gowun Dodum', sans-serif;
+      background: linear-gradient(to bottom right, #cfefff, #e8f9ff);
+      padding: 20px;
+      text-align: center;
+      color: #003f5c;
+      max-width: 100vw; /* 추가 */
+      overflow-x: hidden; /* 추가 */
+    }
+
+.matthew-pic {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  display: block;
+  margin: 0 auto;
+}
+    .quiz-box {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .question {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .options button {
+      display: block;
+      width: 100%;
+      margin: 5px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #b2dffc;
+      color: #003f5c;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #82cffa;
+    }
+
+    .options button.selected {
+      background-color: #ffefb0 !important;
+      border: 2px solid #fbc02d;
+    }
+
+    .question-media {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 10px;
+      box-sizing: border-box; /* 추가 */
+    }
+
+    .hidden { display: none; }
+
+
+.result-box-cute {
+  background: #fff0f7;
+  border: 3px dashed #ffaad4;
+  border-radius: 25px;
+  padding: 50px 20px 30px 20px;
+  width: 100%; 
+  max-width: 500px;
+  margin: 30px auto;
+  box-shadow: 0 8px 18px rgba(255, 192, 203, 0.4);
+  text-align: center;
+  color: #6b003e;
+  font-family: 'Gowun Dodum', sans-serif;
+  position: relative;
+  box-sizing: border-box; 
+}
+
+.result-ribbon {
+  position: relative;
+  background-color: #ffaad4;
+  color: white;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+
+    .result-content p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    #message {
+      font-family: 'Nanum Pen Script', cursive;
+      font-size: 20px;
+      color: #e91e63;
+      margin-top: 12px;
+    }
+
+    .wiki-link-cute {
+      display: inline-block;
+      margin-top: 10px;
+      color: #d63384;
+      font-weight: bold;
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+
+    .wiki-link-cute:hover {
+      color: #b3005e;
+    }
+
+    .result-buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .result-buttons button {
+      background-color: #ffc2e2;
+      color: #6b003e;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(255, 182, 193, 0.3);
+      transition: background-color 0.3s;
+    }
+
+    .result-buttons button:hover {
+      background-color: #ff9fcc;
+    }
+
+    .download-btn {
+      background-color: #ffd1f4;
+      color: #6b003e;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(255, 192, 203, 0.3);
+      transition: background-color 0.3s;
+      margin-top: 20px;
+    }
+
+    .download-btn:hover {
+      background-color: #ff9fe9;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-box">
+    <div id="introContainer">
+      <img src="https://raw.githubusercontent.com/Meadowlight/fanquiz/main/matthew-thumbnail.jpg" alt="매튜 이미지" class="matthew-pic">
+      <h2>💖 How well do I know Matthew?</h2>
+      <p>Let the fan quiz begin!</p>
+      <button class="start-btn" onclick="startQuiz()">🎯 Let’s Go!</button>
+      <button id="musicToggleBtn" class="music-toggle" onclick="toggleMusic()">🔇</button>
+    </div>
+
+    <div id="quizContainer" class="hidden">
+      <div id="question" class="question"></div>
+      <div id="mediaContainer" class="question-media"></div>
+      <div id="options" class="options"></div>
+<div style="margin-top: 15px;">
+  <button id="musicControlInQuiz" onclick="toggleMusic()">🔊</button>
+</div>
+      <div style="margin-top: 20px;">
+        <button id="prevBtn" onclick="goToPrevious()">⬅ Back</button>
+        <button id="nextBtn" onclick="goToNext()">Next ➡</button>
+        <button id="submitBtn" class="hidden" onclick="showResult()">📊 My Score</button>
+      </div>
+    </div>
+
+    <div id="resultContainer" class="hidden">
+  <!-- 🎀 핑크 박스 안: 리본 + 결과 내용만 -->
+  <div class="result-box-cute">
+    <div class="result-ribbon">Only 528cm Between Me and Matthew 💖</div>
+    <div class="result-content">
+      <p class="fan-rank" id="rank"></p>
+      <p class="score" id="scoreText"></p>
+      <p class="message" id="message"></p>
+      <p class="encouragement" id="encouragement"></p>
+      <a href="https://namu.wiki/w/%EC%84%9D%EB%A7%A4%ED%8A%9C" target="_blank" class="wiki-link-cute">
+        💗 Ways to Be Closer to Matthew
+      </a>
+    </div>
+  </div>
+
+  <!-- ✅ 박스 밖: 다시풀기 / 공유 버튼 -->
+  <div class="result-buttons">
+    <button onclick="startQuiz()">🔁 Try Again</button>
+    <button onclick="shareResult()">📤 Show Off My Score</button>
+  </div>
+
+  <!-- ✅ 그 아래: 이미지 저장 버튼 -->
+  <button class="download-btn" onclick="downloadResultCard()">📸 Save Image</button>
+
+  </div>
+
+<audio id="bgMusic" loop>
+  <source src="https://raw.githubusercontent.com/Meadowlight/fanquiz/main/bg.mp3" type="audio/mpeg">
+</audio>
+
+  <script>
+
+const quizData = [
+  { question: "Where was Matthew born?", options: ["Vancouver, Canada", "Toronto, Canada", "Surrey, Canada", "Seattle, USA"], answer: 2 },
+  { question: "Which high school did Matthew graduate from?", options: ["White Rock High", "Earl Marriott Secondary School", "Vancouver Arts School", "Maple Leaf Academy"], answer: 1 },
+  { question: "What major did Matthew drop out of in university?", options: ["Biology", "Health Science", "Psychology", "Physical Education"], answer: 1 },
+  { question: "At what age did Matthew start dancing?", options: ["15", "16", "17", "14"], answer: 1 },
+  { question: "What was Matthew's response when he first received a trainee offer?", options: ["Accepted immediately and moved to Korea", "Ignored it", "Rejected at first but contacted later", "Started training in Canada"], answer: 2 },
+  { question: "What rank did Matthew get in the G Group Visual vote during Boys Planet?", options: ["1st", "2nd", "3rd", "4th"], answer: 1 },
+  { question: "What is Matthew’s MBTI type?", options: ["ENFP", "INFP", "ENFJ", "ISTJ"], answer: 2 },
+  { question: "Which of the following did Matthew NOT narrate in English?", options: ["2023 KCON LA", "'__ BAD' Film Teaser", "2024 Hanteo Chart", "Music Bank MC"], answer: 3 },
+  { question: "What charm point does Matthew often mention?", options: ["Jawline", "Abs", "Smiling Eyes", "Nose Bridge"], answer: 2 },
+  { question: "The moles next to Matthew's eyes are known as 'symmetry moles' among fans.", options: ["O", "X"], answer: 0 },
+  { question: "Matthew doesn't have moles around his mouth, so the nickname 'mustache moles' is incorrect.", options: ["O", "X"], answer: 1 },
+  { question: "Which body part is Matthew most confident about?", options: ["Abs", "Arm Muscles", "Thighs", "Jawline"], answer: 1 },
+  { question: "In which performance did Matthew reveal his abs on stage?", options: ["Say My Name", "Back to ZEROBASE", "Love Killa", "In Bloom"], answer: 2 },
+  { question: "Which content did Matthew narrate?", options: ["'__ BAD' Film Teaser", "Back Pack", "Back to ZEROBASE", "MAMA VCR"], answer: 0 },
+  { question: "Where did Matthew hold hands with fans in real life?", options: ["Myeongdong", "Hongdae", "Gangnam", "Itaewon"], answer: 1 },
+  { question: "What is Matthew’s favorite time of day?", options: ["7AM", "12PM", "4PM", "10PM"], answer: 1 },
+  { question: "What is Matthew’s favorite season?", options: ["Summer", "Winter", "Autumn", "Spring"], answer: 3 },
+  { question: "Which animation inspired Matthew's custom in-ear monitor design?", options: ["Spirited Away", "Your Name", "Howl’s Moving Castle", "Kiki’s Delivery Service"], answer: 2 },
+  { question: "What genre does Matthew say he sings often?", options: ["Hip-hop", "R&B", "Rock", "EDM"], answer: 1 },
+  { question: "Which song did Matthew say he wants to listen to while eating chicken?", options: ["Merry-Go-Round of Life", "Paradise", "Those Days", "I Will Go to You Like the First Snow"], answer: 1 }
+];
+
+    const mediaList = [
+      "https://i.namu.wiki/i/ugfM458HObCY-7DSdXDlz-gLIdyjBlt_g83sw655pA4CVzH8iqBWzErEF6Br80D_SvmkpLmSYUnCKv_WyVrOuQ.mp4",
+      "https://i.namu.wiki/i/9x6fTSU_C2rCA8DI1O2E7h1QQTt-7jaHB22MINYg8UvTLJwde_DASe7_YcfSME2FHzoHQoFFUcSiLSZQGWzInw.mp4",
+      "https://i.namu.wiki/i/tBChiKHnOtsLfuXctirIaik9bqnuGMglvLF9f2MCq0eAFba6o6k59qBMRHB1bcdbB0Obts5615Na7oThVYCa9A.mp4",
+      "https://i.namu.wiki/i/VVmLKyji8jP4QJUkgobd594D39wPXDq5Ti3mlLXTK1frmyBeLNHc3E5op72SbiA94Y3pGE0tEPYHDMVuRKvQ-Q.mp4"
+    ];
+
+
+    function getRandomMediaTag() {
+      const media = mediaList[Math.floor(Math.random() * mediaList.length)];
+      return media.endsWith(".mp4")
+        ? `<video class="question-media" autoplay muted loop playsinline><source src="${media}" type="video/mp4"></video>`
+        : `<img class="question-media" src="${media}" alt="매튜 이미지">`;
+    }
+
+    let currentQuestion = 0;
+
+function showQuestion() {
+  const q = quizData[currentQuestion];
+  document.getElementById("question").innerText = `Q${currentQuestion + 1}. ${q.question}`;
+  document.getElementById("mediaContainer").innerHTML = getRandomMediaTag();
+  document.getElementById("options").innerHTML = q.options.map((opt, idx) => {
+    const isSelected = q.userAnswer === idx ? 'selected' : '';
+    return `<button class="${isSelected}" onclick="selectAnswer(${idx})">${opt}</button>`;
+  }).join('');
+
+  document.getElementById("prevBtn").style.display = currentQuestion === 0 ? "none" : "inline-block";
+  document.getElementById("nextBtn").style.display = currentQuestion === quizData.length - 1 ? "none" : "inline-block";
+  document.getElementById("submitBtn").classList.toggle("hidden", currentQuestion !== quizData.length - 1);
+}
+
+
+function startQuiz() {
+  const music = document.getElementById("bgMusic");
+  if (music && music.paused) {
+    music.play();
+    document.getElementById("musicControlInQuiz").innerText = "🔊";
+  }
+
+  quizData.forEach(q => delete q.userAnswer);
+  currentQuestion = 0;
+  document.getElementById("introContainer").classList.add("hidden");
+  document.getElementById("quizContainer").classList.remove("hidden");
+  document.getElementById("resultContainer").classList.add("hidden");
+  showQuestion();
+}
+
+    function selectAnswer(idx) {
+      quizData[currentQuestion].userAnswer = idx;
+      showQuestion();
+    }
+
+    function goToPrevious() {
+      if (currentQuestion > 0) currentQuestion--;
+      showQuestion();
+    }
+
+    function goToNext() {
+      if (currentQuestion < quizData.length - 1) currentQuestion++;
+      showQuestion();
+    }
+
+    function showResult() {
+      let score = quizData.reduce((acc, q) => acc + (q.userAnswer === q.answer ? 1 : 0), 0);
+      const rank = getFanRank(score, quizData.length);
+      const message = getRankMessage(rank);
+
+      document.getElementById("quizContainer").classList.add("hidden");
+      document.getElementById("resultContainer").classList.remove("hidden");
+      document.getElementById("rank").innerText = `🏅 ${rank}`;
+      document.getElementById("scoreText").innerText = `📊 Score: ${score}/${quizData.length}`;
+      document.getElementById("message").innerText = `💖 Matthew says: 'You did amazing!'`;
+      document.getElementById("encouragement").innerText = `💡 ${message}`;
+    }
+
+    function getFanRank(score, total) {
+      const ratio = score / total;
+      if (ratio >= 0.9) return "Level 528";
+      if (ratio >= 0.5) return "Level 28";
+      if (ratio >= 0.4) return "Level 5";
+      return "Level 2";
+    }
+
+    function getRankMessage(rank) {
+      switch (rank) {
+        case "Level 528": return "You're a perfect fan! Matthew might just remember you 💖";
+        case "Level 28": return "You're pretty close! Your love for Matthew shines through 👏";
+        case "Level 5": return "A budding fan! Just a bit more to become perfect 🌱";
+        case "Level 2": return "It's a start filled with excitement! Let's learn more about Matthew 💡";
+        default: return "";
+      }
+    }
+
+function toggleMusic() {
+  const music = document.getElementById("bgMusic");
+  const buttons = document.querySelectorAll("#musicToggleBtn, #musicControlInQuiz");
+
+  if (music.paused) {
+    music.play();
+    buttons.forEach(btn => btn.innerText = "🔊");
+  } else {
+    music.pause();
+    buttons.forEach(btn => btn.innerText = "🔇");
+  }
+}
+function downloadResultCard() {
+  const resultBox = document.querySelector(".result-box-cute");
+  html2canvas(resultBox, {
+    backgroundColor: null,
+    scale: 2,
+    useCORS: true
+  }).then(canvas => {
+    const link = document.createElement("a");
+    link.download = 'matthew_result.png';
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>
